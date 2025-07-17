@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import socket from '../sockets/socket';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import FloatingChatButton from '../components/FloatingChatButton'
 
 interface Option {
@@ -23,6 +23,7 @@ export default function TeacherPage() {
     const [timerActive, setTimerActive] = useState(false);
 
     useEffect(() => {
+
         socket.emit('teacher_joined', { id: '1' });
 
         socket.on('live_results', (results: Record<number, number>) => {
@@ -80,10 +81,6 @@ export default function TeacherPage() {
         setShowResults(false);
     }
 
-    const handleQuestionHistory = () => {
-        navigate('/questionHistory');
-    }
-
     const addOption = () => {
         setOptions([...options, { text: '', isCorrect: null }]);
     };
@@ -125,13 +122,14 @@ export default function TeacherPage() {
                     <span>✨</span> Intervue Poll
                 </span>
 
-                {(!showResults || timer === 0) && (
+                {(!showResults || timer <= 1) && (
+                    <Link to="/questionHistory" target="_blank" rel="noopener noreferrer">
                     <button
-                        onClick={handleQuestionHistory}
                         className="bg-[#7765DA] hover:bg-[#6654c7] text-white px-6 py-2 rounded-full font-medium transition"
                     >
                         View Poll history
                     </button>
+                    </Link>
                 )}
             </div>
 
@@ -281,10 +279,10 @@ export default function TeacherPage() {
                             })}
                         </div>
                         <div className="text-center text-sm font-medium text-gray-600 mt-4">
-                            ⏱️ Time Left: 00:{timer < 10 ? `0${timer}` : timer}
+                            ⏱️ Time Left: 00:{timer < 10 ? (timer<=1 ? '00' : '0'+timer) : timer}
                         </div>
                     </div>
-                    {timer === 0 && (
+                    {timer <= 1 && (
                         <div className="flex justify-end mt-10">
                             <button
                                 onClick={handleAskNewQuestion}

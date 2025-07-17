@@ -1,6 +1,7 @@
-import React, { useState} from 'react';
+import React, { useState,} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import socket from '../sockets/socket';
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -11,8 +12,9 @@ export default function HomePage() {
     const fetchQuestions = async () => {
         try {
             const response = await axios.get("https://ndn8j3x1-4000.inc1.devtunnels.ms/teacher/check");
+            console.log(response.data.Teacher);
             if (response.data.Teacher) {
-                navigate('/teacher');
+                
             } else {
                 alert("Teacher is alread present ,only one teacher can be present at a time");
             }
@@ -25,7 +27,7 @@ export default function HomePage() {
     const handleContinue = async() => {
         if (role === 'student') navigate('/student');
         else if (role === 'teacher') {
-            fetchQuestions();
+            navigate('/teacher');
         }
     };
 

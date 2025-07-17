@@ -15,7 +15,7 @@ const ParticipantsList = ({ isTeacher }: { isTeacher: boolean }) => {
     };
     const fetchStudents = async () => {
         try {
-            const response = await axios.get('https://ndn8j3x1-4000.inc1.devtunnels.ms/students/list');
+            const response = await axios.get('https://live-polling-backend-1-rxnh.onrender.com/students/list');
             setStudents(response.data.students)
 
         } catch {

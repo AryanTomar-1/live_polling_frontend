@@ -18,7 +18,7 @@ const PollHistory = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("https://ndn8j3x1-4000.inc1.devtunnels.ms/questions/all");
+        const response = await axios.get('https://live-polling-backend-1-rxnh.onrender.com/questions/all');
         setQuestions(response.data.history);
       } catch (error) {
         console.error("Error fetching poll history", error);

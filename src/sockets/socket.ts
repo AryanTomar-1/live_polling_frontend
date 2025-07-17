@@ -1,4 +1,4 @@
 import { io } from 'socket.io-client';
 
-const socket = io('https://ndn8j3x1-4000.inc1.devtunnels.ms');
+const socket = io('https://live-polling-backend-1-rxnh.onrender.com/'); // use your backend URL in production
 export default socket;

@@ -116,7 +116,7 @@ export default function StudentPage() {
         <div className="max-w-xl mx-auto bg-white p-6 border rounded-md shadow">
           <div className="flex justify-between mb-3 text-sm font-semibold text-gray-700">
             <span>Question 1</span>
-            <span className="text-red-500">⏱️ 00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}</span>
+            <span className="text-red-500">⏱️ 00:{timeLeft < 10 ? (timeLeft<=1 ? '00' : '0'+timeLeft) : timeLeft}</span>
           </div>
           <div className="bg-gray-700 text-white px-4 py-3 rounded-t-md text-left text-sm font-medium">
             {poll.question}

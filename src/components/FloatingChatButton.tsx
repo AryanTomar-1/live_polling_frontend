@@ -26,7 +26,12 @@ const FloatingChatButton = ({ isTeacher }: { isTeacher: boolean }) => {
     return (
         <>
             <button
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                    if(open){
+                        setLatestMessage(null);
+                    }
+                    setOpen(!open);
+                }}
                 className="fixed bottom-6 right-6 bg-[#7765DA] w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white text-xl z-50"
             >
                 <svg

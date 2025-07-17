@@ -5,6 +5,7 @@ import StudentPage from './pages/StudentPage';
 import TeacherPage from './pages/TeacherPage';
 import QuestionHistoryPage from './pages/PollHistory';
 import KickedOutPage from './pages/KickedOut';
+import TeacherProtectedRoute from "./components/TeacherProtectedRoute";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/student" element={<StudentPage />} />
-        <Route path="/teacher" element={<TeacherPage />} />
+        <Route path="/teacher" element={<TeacherProtectedRoute><TeacherPage /></TeacherProtectedRoute>} />
         <Route path="/questionHistory" element={<QuestionHistoryPage/>}/>
         <Route path="/kicked" element={<KickedOutPage />} />
 
